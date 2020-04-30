@@ -31,5 +31,13 @@ namespace WebApplication2.Controllers
             }
             return View(listaSucursal);
         }
+
+        //retorna vista 
+        public ActionResult Agregar() 
+        {
+            return View();
+        
+        }
+
     }
 }

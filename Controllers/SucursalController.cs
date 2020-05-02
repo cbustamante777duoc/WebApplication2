@@ -33,11 +33,39 @@ namespace WebApplication2.Controllers
         }
 
         //retorna vista 
-        public ActionResult Agregar() 
+        public ActionResult Agregar()
         {
             return View();
-        
+
         }
+
+        [HttpPost]
+        public ActionResult Agregar(SucursalCLS oSucursalCLS)
+        {
+            //si el modelo no es valido
+            if (!ModelState.IsValid)
+            {
+                // esto es para que lo valores se queden donde mismo
+                return View(oSucursalCLS);
+            }
+            using (var bd = new BDPasajeEntities()) 
+            {
+                //entidad llamada de entityframework
+                Sucursal oSucursal = new Sucursal();
+                oSucursal.NOMBRE = oSucursalCLS.nombre;
+                oSucursal.DIRECCION = oSucursalCLS.direccion;
+                oSucursal.TELEFONO = oSucursalCLS.telefono;
+                oSucursal.EMAIL = oSucursalCLS.email;
+                oSucursal.FECHAAPERTURA = oSucursalCLS.fechaApertura;
+                oSucursal.BHABILITADO = 1;
+                bd.Sucursal.Add(oSucursal);
+                bd.SaveChanges();
+            
+            }
+                return RedirectToAction("Index");
+
+        }
+
 
     }
 }

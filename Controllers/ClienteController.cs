@@ -30,5 +30,12 @@ namespace WebApplication2.Controllers
             return View(listaClientes);
         }
 
+        //vista agregar
+        public ActionResult Agregar() 
+        {
+
+            return View();
+        }
+
     }
 }

@@ -30,9 +30,33 @@ namespace WebApplication2.Controllers
             return View(listaClientes);
         }
 
+        List<SelectListItem> listaSexo;
+        private void llenarSexo() 
+        {
+            using (var bd = new BDPasajeEntities())
+            {
+                listaSexo = (from sexo in bd.Sexo
+                             where sexo.BHABILITADO == 1
+                             select new SelectListItem
+                             {
+                                 //lo que se muestra
+                                 Text = sexo.NOMBRE,
+                                 //lo que se guarda
+                                 Value = sexo.IIDSEXO.ToString()
+                             }).ToList();
+                listaSexo.Insert(0, new SelectListItem { Text = "--seleciones--", Value = "" });
+            }
+        
+        }
+
+
+
         //vista agregar
         public ActionResult Agregar() 
         {
+            llenarSexo();
+            //pasa informacion de la lista ala listasexo
+            ViewBag.lista = listaSexo;
 
             return View();
         }

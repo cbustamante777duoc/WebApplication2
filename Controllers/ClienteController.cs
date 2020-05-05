@@ -61,5 +61,38 @@ namespace WebApplication2.Controllers
             return View();
         }
 
+        [HttpPost]
+        //recibe el modelo de ClienteCLS
+        public ActionResult Agregar(ClienteCLS oClienteCLS) 
+        {
+            if (!ModelState.IsValid)
+            {
+                llenarSexo();
+                ViewBag.lista = listaSexo;
+                return View(oClienteCLS);
+            }
+
+            using (var bd = new BDPasajeEntities()) 
+            {
+                //referencia a Cliente Entity
+                Cliente cliente = new Cliente();
+                cliente.NOMBRE = oClienteCLS.nombre;
+                cliente.APPATERNO = oClienteCLS.apPaterno;
+                cliente.APMATERNO = oClienteCLS.apMaterno;
+                cliente.EMAIL = oClienteCLS.email;
+                cliente.DIRECCION = oClienteCLS.direccion;
+                cliente.IIDSEXO = oClienteCLS.iidsexo;
+                cliente.TELEFONOCELULAR = oClienteCLS.telefonoCelular;
+                cliente.TELEFONOFIJO = oClienteCLS.telefonoFijo;
+                cliente.BHABILITADO = 1;
+                bd.Cliente.Add(cliente);
+                bd.SaveChanges();
+
+            }
+
+            return RedirectToAction("Index");
+        
+        }
+
     }
 }

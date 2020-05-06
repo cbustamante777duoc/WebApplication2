@@ -162,6 +162,7 @@
     <Compile Include="Models\Empleado.cs">
       <DependentUpon>BDPasajes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmpleadoCLS.cs" />
     <Compile Include="Models\Lugar.cs">
       <DependentUpon>BDPasajes.tt</DependentUpon>
     </Compile>

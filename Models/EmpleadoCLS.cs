@@ -41,7 +41,10 @@ namespace WebApplication2.Models
 
 
         ///PROPIPEDADES ADICIONALES
+
+        [Display(Name = "nombre tipo contrato")]
         public string nombreTipoContrato { get; set; }
+        [Display(Name = "nombre tipo usuario")]
         public string nombreTipoUsuario { get; set; }
 
 

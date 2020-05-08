@@ -21,6 +21,7 @@ namespace WebApplication2.Controllers
                                   on empleado.IIDTIPOUSUARIO equals tipoUsuario.IIDTIPOUSUARIO
                                   join tipoContrato in db.TipoContrato
                                   on empleado.IIDTIPOCONTRATO equals tipoContrato.IIDTIPOCONTRATO
+                                  where empleado.BHABILITADO==1
                                   select new EmpleadoCLS
                                   {
                                       iidEmpleado = empleado.IIDEMPLEADO,

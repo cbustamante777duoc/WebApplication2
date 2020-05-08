@@ -16,6 +16,11 @@ namespace WebApplication2.Models
         [Display(Name = "Tipo bus")]
         [Required]
         public int iidTipoBus { get; set; }
+        [Display(Name = "patente")]
+        [Required]
+        [StringLength(100,ErrorMessage ="longitud maxima de caracteres 100")]
+        public string placa { get; set; }
+
         [Display(Name = "fecha de compra")]
         [Required]
         [DataType(DataType.Date)]
@@ -33,8 +38,10 @@ namespace WebApplication2.Models
         public int bhabilitado { get; set; }
         [Display(Name = "Descripcion")]
         [Required]
+        [StringLength(200, ErrorMessage = "longuitud maxima 200")]
         public string descripcion { get; set; }
         [Display(Name = "Observacion")]
+        [StringLength(200,ErrorMessage ="longuitud maxima 200")]
        
         public string observacion { get; set; }
         [Display(Name = "Nombre marca")]

@@ -1,0 +1,32 @@
+﻿@using WebApplication2.Models
+@model List<ViajeCLS>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].iidViaje)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreLugarDeOrigen)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreLugarDeDestino)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreBus)</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.iidViaje</td>
+                <td>@item.nombreLugarDeOrigen</td>
+                <td>@item.nombreLugarDeDestino</td>
+                <td>@item.nombreBus</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+

@@ -35,5 +35,74 @@ namespace WebApplication2.Controllers
             }
                 return View(listaEmpleados);
         }
+
+        public void ListarComboTipoContrato() 
+        {
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities()) 
+            {
+                lista = (from item in bd.TipoContrato
+                             where item.BHABILITADO == 1
+                             select new SelectListItem
+                             {
+                                 Text = item.NOMBRE,
+                                 Value = item.IIDTIPOCONTRATO.ToString()
+                             }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--selecione--", Value = "" });
+                ViewBag.listaTipoContrato = lista;
+
+            }
+        }
+
+        public void ListarComboSexo()
+        {
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities())
+            {
+                lista = (from item in bd.Sexo
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDSEXO.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--selecione--", Value = "" });
+                ViewBag.listaSexo = lista;
+
+            }
+        }
+
+        public void ListarComboTipoUsuario()
+        {
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities())
+            {
+                lista = (from item in bd.TipoUsuario
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDTIPOUSUARIO.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--selecione--", Value = "" });
+                ViewBag.listaTipoUsuario = lista;
+
+            }
+        }
+
+        //funcion que lista todos los comboboxes
+        public void ListarComboBoxes() 
+        {
+            ListarComboTipoUsuario();
+            ListarComboSexo();
+            ListarComboTipoContrato();
+        }
+
+
+        public ActionResult Agregar() 
+        {
+            ListarComboBoxes();
+            return View();
+        }
     }
 }

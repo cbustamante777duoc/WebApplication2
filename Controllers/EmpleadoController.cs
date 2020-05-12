@@ -104,5 +104,41 @@ namespace WebApplication2.Controllers
             ListarComboBoxes();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Agregar(EmpleadoCLS OempleadoCLS)
+        {
+            if (!ModelState.IsValid)
+            {
+                ListarComboSexo();
+                ListarComboTipoContrato();
+                ListarComboTipoUsuario();
+                //se pasa el modelo para que la informacion no se borre
+                return View(OempleadoCLS);
+
+            }
+            using (var bd = new BDPasajeEntities()) 
+            {
+                //entidad de entity framework
+                Empleado empleado = new Empleado();
+                empleado.NOMBRE = OempleadoCLS.nombre;
+                empleado.APPATERNO = OempleadoCLS.apPaterno;
+                empleado.APMATERNO = OempleadoCLS.apMaterno;
+                empleado.FECHACONTRATO = OempleadoCLS.fechaContrato;
+                empleado.SUELDO = OempleadoCLS.sueldo;
+                empleado.IIDTIPOUSUARIO = OempleadoCLS.iidtipoUsuario;
+                empleado.IIDTIPOCONTRATO = OempleadoCLS.iidtipoContrato;
+                empleado.IIDSEXO = OempleadoCLS.iidSexo;
+                empleado.BHABILITADO = 1;
+                bd.Empleado.Add(empleado);
+                bd.SaveChanges();
+            }
+
+            //si todo sale bien envia a index
+            return RedirectToAction("Index");
+           
+        }
+
+
     }
 }

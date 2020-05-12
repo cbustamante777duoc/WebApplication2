@@ -8,50 +8,53 @@ namespace WebApplication2.Models
 {
     public class EmpleadoCLS
     {
-        [Display(Name ="id empleado")]
-        
+        [Display(Name = "Id Empleado")]
+
         public int iidEmpleado { get; set; }
-        [Display(Name = "Nombre Empleado")]
+        [Display(Name = "Nombre")]
         [Required]
-        [StringLength(100,ErrorMessage ="longuitud maxima es de 100")]
+        [StringLength(100, ErrorMessage = "Longitud maxima 100")]
         public string nombre { get; set; }
         [Display(Name = "Apellido Paterno")]
         [Required]
-        [StringLength(200, ErrorMessage = "longuitud maxima es de 200")]
+        [StringLength(200, ErrorMessage = "Longitud maxima 200")]
         public string apPaterno { get; set; }
         [Display(Name = "Apellido Materno")]
         [Required]
-        [StringLength(200, ErrorMessage = "longuitud maxima es de 200")]
+        [StringLength(200, ErrorMessage = "Longitud maxima 200")]
         public string apMaterno { get; set; }
-        [Display(Name = "fecha de contrato")]
+        [Display(Name = "Fecha Contrato")]
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime fechaContrato { get; set; }
-
-        [Display(Name = " tipo de usuario")]
+        [Display(Name = "Tipo Usuario")]
         [Required]
-        public int iidtipoUsuario{ get; set; }
-        [Display(Name = "tipo contrato")]
+
+
+        public int iidtipoUsuario { get; set; }
+        [Display(Name = "Tipo Contrato")]
         [Required]
         public int iidtipoContrato { get; set; }
-        [Display(Name = "sexo")]
+        [Display(Name = "Sexo")]
         [Required]
         public int iidSexo { get; set; }
         public int bhabilitado { get; set; }
-
-        [Display(Name = "sueldo")]
         [Required]
-        [Range(0,10000000, ErrorMessage ="se ha pasado del limite de sueldo 10 millones")]
-        public double sueldo { get; set; }
+        [Range(0, 100000, ErrorMessage = "Fuera de rango")]
+        [Display(Name = "Sueldo")]
+        public decimal sueldo { get; set; }
+
+        public string mensajeError { get; set; }
+
+        [Display(Name = "Tipo Contrato")]
 
 
-        ///PROPIPEDADES ADICIONALES
-
-        [Display(Name = "nombre tipo contrato")]
+        /////Propiedades adicionales
         public string nombreTipoContrato { get; set; }
-        [Display(Name = "nombre tipo usuario")]
+        [Display(Name = "Tipo Usuario")]
         public string nombreTipoUsuario { get; set; }
+
 
 
 

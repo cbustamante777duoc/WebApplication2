@@ -28,6 +28,7 @@ namespace WebApplication2.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime fechaContrato { get; set; }
+
         [Display(Name = " tipo de usuario")]
         [Required]
         public int iidtipoUsuario{ get; set; }
@@ -38,6 +39,11 @@ namespace WebApplication2.Models
         [Required]
         public int iidSexo { get; set; }
         public int bhabilitado { get; set; }
+
+        [Display(Name = "sueldo")]
+        [Required]
+        [Range(0,10000000, ErrorMessage ="se ha pasado del limite de sueldo 10 millones")]
+        public double sueldo { get; set; }
 
 
         ///PROPIPEDADES ADICIONALES

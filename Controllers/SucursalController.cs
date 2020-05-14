@@ -32,6 +32,26 @@ namespace WebApplication2.Controllers
             return View(listaSucursal);
         }
 
+    
+        public ActionResult Editar(int id) 
+        {
+            SucursalCLS OsucursalCLS = new SucursalCLS();
+            using (var bd = new BDPasajeEntities()) 
+            {
+                //si hay error por orden ir 23 min 4.00
+                Sucursal sucursal = bd.Sucursal.Where(s => s.IIDSUCURSAL.Equals(id)).First();
+                OsucursalCLS.iidsucursal = sucursal.IIDSUCURSAL;
+                OsucursalCLS.nombre = sucursal.NOMBRE;
+                OsucursalCLS.telefono = sucursal.TELEFONO;
+                OsucursalCLS.direccion = sucursal.DIRECCION;
+                OsucursalCLS.email = sucursal.EMAIL;
+                OsucursalCLS.fechaApertura = (DateTime)sucursal.FECHAAPERTURA;
+            
+            }
+                return View(OsucursalCLS);
+        
+        }
+
         //retorna vista 
         public ActionResult Agregar()
         {

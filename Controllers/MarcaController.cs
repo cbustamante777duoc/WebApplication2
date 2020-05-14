@@ -34,6 +34,19 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
+
+        public ActionResult Editar(int id)
+        {
+            MarcaCLS OmarcaCLS = new MarcaCLS();
+            using (var bd = new BDPasajeEntities())
+            {
+               Marca OMarca = bd.Marca.Where(m => m.IIDMARCA.Equals(id)).First();
+                OmarcaCLS.iidmarca = OMarca.IIDMARCA;
+                OmarcaCLS.nombre = OMarca.NOMBRE;
+                OmarcaCLS.descripcion = OMarca.DESCRIPCION;
+            }
+             return View(OmarcaCLS);
+        }
         
         [HttpPost]
         public ActionResult Agregar(MarcaCLS oMarcaCLS)

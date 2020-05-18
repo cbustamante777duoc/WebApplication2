@@ -30,6 +30,31 @@ namespace WebApplication2.Controllers
             return View(listaClientes);
         }
 
+        public ActionResult Editar(int id) 
+        {
+            ClienteCLS OclienteCLS = new ClienteCLS();
+
+            using (var bd = new BDPasajeEntities()) 
+            {
+                llenarSexo();
+                //pasa informacion de la lista ala listasexo
+                ViewBag.lista = listaSexo;
+
+                Cliente oCliente = bd.Cliente.Where(c => c.IIDCLIENTE.Equals(id)).First();
+                OclienteCLS.iidcliente = oCliente.IIDCLIENTE;
+                OclienteCLS.nombre = oCliente.NOMBRE;
+                OclienteCLS.apPaterno = oCliente.APPATERNO;
+                OclienteCLS.apMaterno = oCliente.APMATERNO;
+                OclienteCLS.direccion = oCliente.DIRECCION;
+                OclienteCLS.iidsexo =(int) oCliente.IIDSEXO;
+                OclienteCLS.telefonoCelular = oCliente.TELEFONOCELULAR;
+                OclienteCLS.telefonoFijo = oCliente.TELEFONOFIJO;
+                OclienteCLS.email = oCliente.EMAIL;
+
+            }
+             return View(OclienteCLS);        
+        }
+
         List<SelectListItem> listaSexo;
         private void llenarSexo() 
         {

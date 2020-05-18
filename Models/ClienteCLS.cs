@@ -28,6 +28,7 @@ namespace WebApplication2.Models
         [EmailAddress(ErrorMessage = "Ingrese un email valido")]
         public string email { get; set; }
         [Display(Name = "Direccion")]
+        [DataType(DataType.MultilineText)]
         [Required]
         [StringLength(200, ErrorMessage = "La direccion tiene que tener solo 200 caracteres")]
         public string direccion { get; set; }

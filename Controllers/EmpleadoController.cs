@@ -72,6 +72,8 @@ namespace WebApplication2.Controllers
             }
         }
 
+
+
         public void ListarComboTipoUsuario()
         {
             List<SelectListItem> lista;
@@ -137,6 +139,33 @@ namespace WebApplication2.Controllers
             //si todo sale bien envia a index
             return RedirectToAction("Index");
            
+        }
+
+        public ActionResult Editar(int id) 
+        {
+            ListarComboBoxes();
+            EmpleadoCLS OempleadoCLS = new EmpleadoCLS();
+            using (var bd = new BDPasajeEntities()) 
+            {
+                // consulta que solo trae al primer empleado
+                Empleado empleado = bd.Empleado.Where(e => e.IIDEMPLEADO.Equals(id)).First();
+
+                OempleadoCLS.iidEmpleado = empleado.IIDEMPLEADO;
+                OempleadoCLS.nombre = empleado.NOMBRE;
+                OempleadoCLS.apPaterno = empleado.APPATERNO;
+                OempleadoCLS.apMaterno = empleado.APMATERNO;
+                OempleadoCLS.fechaContrato = (DateTime) empleado.FECHACONTRATO;
+                OempleadoCLS.sueldo = (decimal)empleado.SUELDO;
+                OempleadoCLS.iidEmpleado = empleado.IIDEMPLEADO;
+
+                OempleadoCLS.iidtipoUsuario =(int) empleado.IIDTIPOUSUARIO;
+                OempleadoCLS.iidtipoContrato =(int) empleado.IIDTIPOCONTRATO;
+                OempleadoCLS.iidSexo = (int )empleado.IIDSEXO;
+            
+            
+            }
+                return View(OempleadoCLS);
+        
         }
 
 

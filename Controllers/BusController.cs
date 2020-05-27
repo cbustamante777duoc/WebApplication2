@@ -35,5 +35,88 @@ namespace WebApplication2.Controllers
 
                 return View(listaBus);
         }
+
+        public void ListarComboTipoModelo()
+        {
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities())
+            {
+                lista = (from item in bd.TipoBus
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDTIPOBUS.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--selecione--", Value = "" });
+                ViewBag.listaTipoBus = lista;
+
+            }
+        }
+        public void ListarComboMarca()
+        {
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities())
+            {
+                lista = (from item in bd.Marca
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDMARCA.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--selecione--", Value = "" });
+                ViewBag.listaMarca = lista;
+
+            }
+        }
+        public void ListarComboModelo()
+        {
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities())
+            {
+                lista = (from item in bd.Modelo
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDMODELO.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--selecione--", Value = "" });
+                ViewBag.listaModelos = lista;
+
+            }
+        }
+        public void ListarSucursal()
+        {
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities())
+            {
+                lista = (from item in bd.Sucursal
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDSUCURSAL.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--selecione--", Value = "" });
+                ViewBag.listaSucursal = lista;
+
+            }
+        }
+
+        public void ListarComboxes() 
+        {
+            ListarComboTipoModelo();
+            ListarComboMarca();
+            ListarComboModelo();
+            ListarSucursal();
+
+        }
+        public ActionResult Agregar() 
+        {
+            ListarComboxes();
+            return View();
+        }
     }
 }

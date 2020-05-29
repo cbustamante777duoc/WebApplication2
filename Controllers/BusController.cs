@@ -118,5 +118,38 @@ namespace WebApplication2.Controllers
             ListarComboxes();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Agregar(BusCLS ObusCLS) 
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(ObusCLS);
+            }
+
+            using (var bd = new BDPasajeEntities()) 
+            {
+                Bus bus = new Bus();
+                bus.IIDSUCURSAL = ObusCLS.iidSucursal;
+                bus.IIDTIPOBUS = ObusCLS.iidTipoBus;
+                bus.PLACA = ObusCLS.placa;
+                bus.FECHACOMPRA = ObusCLS.fechaCompra;
+                bus.IIDMODELO = ObusCLS.iidModelo;
+                bus.NUMEROFILAS = ObusCLS.numeroFilas;
+                bus.NUMEROCOLUMNAS = ObusCLS.numeroColumnas;
+                bus.DESCRIPCION = ObusCLS.descripcion;
+                bus.OBSERVACION = ObusCLS.observacion;
+                bus.IIDMARCA = ObusCLS.iidMarca;
+                bus.BHABILITADO = 1;
+                //guardando el objeto bus en la base de datos
+                bd.Bus.Add(bus);
+                //guardando los cambios
+                bd.SaveChanges();
+
+            
+            }
+            return RedirectToAction("index");
+
+        }
     }
 }
